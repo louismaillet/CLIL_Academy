@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="md:flex md:justify-between">
           <div className="mb-8 md:mb-0 md:w-1/3">
             <Link to="/" className="flex items-center mb-4">
-              <img src="/images/logo-ecla-white.png" alt="European CLIL Academy Logo" style={{ height: '28px' }} />
+              <img src="/images/Logo.png" alt="European CLIL Academy Logo" style={{ height: '60px' }} />
             </Link>
             <p className="text-sm text-gray-300">
               {t('footer.description')}
