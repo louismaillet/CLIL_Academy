@@ -1,116 +1,122 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { GraduationCap, BookOpen, Globe, Target, Hand, Users, Euro, MessageSquare, Award } from 'lucide-react';
 import useScrollReveal from '../hooks/useScrollReveal';
+import europeMap from '/images/Carte vectorielle de l\'Europe en bleu.png';
 
-const Home = () => {
-  useScrollReveal('.feature-box, .date-card, .course-card, .format-card, .expertise-item, .info-card');
-
+// Reusable Button Component
+const Button = ({ to, children, variant = 'primary', className = '' }) => {
+  const baseClasses = 'inline-block px-8 py-3 text-center font-semibold rounded-md transition-transform transform hover:scale-105';
+  const variants = {
+    primary: 'bg-primary text-white',
+    secondary: 'bg-accent text-white',
+    outline: 'bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white',
+  };
   return (
-    <div id="home" className="page active">
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-content">
-          <h1>European CLIL Academy</h1>
-          <p className="subtitle">CLIL Training for Primary School Teachers across Europe</p>
-          <p className="hero-description">Develop your teaching skills through practical CLIL strategies designed for primary education.</p>
-          <div className="hero-highlight">
-            Erasmus+ compatible courses • Hands-on, classroom-ready approaches • Designed by an experienced pedagogical advisor
-          </div>
-          <div className="cta-buttons">
-            <Link to="/courses" className="btn btn-primary">Discover Our Courses</Link>
-            <Link to="/contact" className="btn btn-secondary">Contact Us</Link>
-          </div>
-        </div>
-      </section>
+    <Link to={to} className={`${baseClasses} ${variants[variant]} ${className}`}>
+      {children}
+    </Link>
+  );
+};
 
-      {/* Quick About */}
-      <section className="container">
-        <h2>Welcome to European CLIL Academy</h2>
-        <p className="section-subtitle" style={{ marginBottom: '2rem', fontSize: '1.1rem' }}>
-          We provide professional development courses for primary school teachers who want to implement Content and Language Integrated Learning (CLIL) in their classrooms.
-        </p>
-        
-        <div className="features-grid">
-          <div className="feature-box">
-            <div className="feature-icon">🎓</div>
-            <h3>Strengthen Confidence</h3>
-            <p>Build confidence in teaching through a foreign language with proven strategies</p>
-          </div>
-          <div className="feature-box">
-            <div className="feature-icon">📚</div>
-            <h3>Practical Strategies</h3>
-            <p>Ready-to-use classroom approaches that work immediately with your students</p>
-          </div>
-          <div className="feature-box">
-            <div className="feature-icon">🌍</div>
-            <h3>Engaging Learning</h3>
-            <p>Support meaningful, engaging learning experiences for young learners</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Preview */}
-      <section className="container light">
-        <h2>Why Choose European CLIL Academy</h2>
-        <div className="features-grid" style={{ marginTop: '2rem' }}>
-          <div className="feature-box">
-            <div className="feature-icon">🎯</div>
-            <h3>Primary Education Specialist</h3>
-            <p>Specialized expertise in primary school contexts and pedagogy</p>
-          </div>
-          <div className="feature-box">
-            <div className="feature-icon">✋</div>
-            <h3>Practical Application</h3>
-            <p>Focus on immediate classroom implementation</p>
-          </div>
-          <div className="feature-box">
-            <div className="feature-icon">👥</div>
-            <h3>Small Groups</h3>
-            <p>Intimate learning groups for personalized attention</p>
-          </div>
-          <div className="feature-box">
-            <div className="feature-icon">🌐</div>
-            <h3>European & Intercultural</h3>
-            <p>Aligned with European educational standards and priorities</p>
-          </div>
-          <div className="feature-box">
-            <div className="feature-icon">💬</div>
-            <h3>Interactive Sessions</h3>
-            <p>Engaging, participatory learning formats</p>
-          </div>
-          <div className="feature-box">
-            <div className="feature-icon">✈️</div>
-            <h3>Erasmus+ Compatible</h3>
-            <p>Designed to fit perfectly into Erasmus+ mobility programs</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Upcoming Dates Preview */}
-      <section className="container">
-        <h2>Upcoming Courses</h2>
-        <p className="section-subtitle">Join us in Chartres, France for intensive professional development</p>
-        <div className="dates-container">
-          <div className="date-card">
-            <h4>Autumn Session</h4>
-            <p>19–23 October 2026</p>
-            <a href="https://www.google.com/maps/place/Chartres,+France" target="_blank" rel="noopener noreferrer" className="date-badge">📍 Chartres, France</a>
-          </div>
-          <div className="date-card">
-            <h4>Winter Session</h4>
-            <p>22–26 February 2027</p>
-            <a href="https://www.google.com/maps/place/Chartres,+France" target="_blank" rel="noopener noreferrer" className="date-badge">📍 Chartres, France</a>
-          </div>
-          <div className="date-card">
-            <h4>Spring Session</h4>
-            <p>19–23 April 2027</p>
-            <a href="https://www.google.com/maps/place/Chartres,+France" target="_blank" rel="noopener noreferrer" className="date-badge">📍 Chartres, France</a>
-          </div>
-        </div>
-        <p style={{ textAlign: 'center', color: 'var(--medium-text)', marginTop: '2rem' }}>Other sessions may be opened on demand. Contact us for custom training arrangements.</p>
-      </section>
+// Reusable Feature Card Component
+const FeatureCard = ({ icon, title, children }) => {
+  return (
+    <div className="feature-box bg-white p-6 rounded-lg shadow-sm text-center">
+      <div className="flex justify-center items-center mb-4 w-12 h-12 mx-auto bg-secondary/20 text-secondary rounded-full">
+        {icon}
+      </div>
+      <h3 className="text-xl font-display mb-2">{title}</h3>
+      <p className="text-body-text">{children}</p>
     </div>
   );
 };
 
+const Home = () => {
+  const { t } = useTranslation();
+  useScrollReveal('.feature-box, .course-card, .info-card');
+
+  return (
+    <div>
+      {/* Hero Section */}
+      <section className="bg-light-alt-bg py-20 md:py-32">
+        <div className="max-w-screen-xl mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-6xl font-display font-bold text-primary mb-4">
+            {t('home.hero.title')}
+          </h1>
+          <p className="text-xl md:text-2xl text-secondary font-semibold max-w-3xl mx-auto mb-4">
+            {t('home.hero.subtitle')}
+          </p>
+          <p className="text-lg md:text-xl text-body-text max-w-3xl mx-auto mb-8">
+            {t('home.hero.description')}
+          </p>
+          <div className="flex justify-center gap-4">
+            <Button to="/courses">{t('home.hero.btn_courses')}</Button>
+            <Button to="/contact" variant="outline">{t('home.hero.btn_contact')}</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Welcome Section */}
+      <section className="py-16 md:py-24">
+        <div className="max-w-screen-xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">{t('home.welcome.title')}</h2>
+          <p className="text-body-text max-w-3xl mx-auto mb-12">
+            {t('home.welcome.desc')}
+          </p>
+          <div className="grid md:grid-cols-3 gap-8">
+            <FeatureCard icon={<GraduationCap size={24} />} title={t('home.feat1.title')}>
+              {t('home.feat1.desc')}
+            </FeatureCard>
+            <FeatureCard icon={<BookOpen size={24} />} title={t('home.feat2.title')}>
+              {t('home.feat2.desc')}
+            </FeatureCard>
+            <FeatureCard icon={<Globe size={24} />} title={t('home.feat3.title')}>
+              {t('home.feat3.desc')}
+            </FeatureCard>
+          </div>
+        </div>
+      </section>
+
+      {/* Erasmus+ Section */}
+      <section className="bg-light-alt-bg py-16 md:py-24">
+        <div className="max-w-screen-xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <span className="font-bold text-secondary uppercase">{t('home.erasmus.tag')}</span>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mt-2 mb-4">{t('home.erasmus.title')}</h2>
+            <p className="text-body-text mb-6">
+              {t('home.erasmus.desc')}
+            </p>
+            <Button to="/courses" variant="secondary">{t('home.erasmus.btn')}</Button>
+          </div>
+          <div className="relative">
+            <img src={europeMap} alt="Map of Europe" className="rounded-lg" />
+            <img src="/images/pin.svg" alt="Pin on Chartres" className="absolute" style={{ width: '48px', height: '48px', top: '55%', left: '48%', transform: 'translate(-50%, -50%)' }} />
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-16 md:py-24">
+        <div className="max-w-screen-xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">{t('home.why.title')}</h2>
+            <p className="text-body-text max-w-2xl mx-auto">
+              {t('home.why.desc')}
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <FeatureCard icon={<Target size={24} />} title={t('home.why.1')} />
+            <FeatureCard icon={<Hand size={24} />} title={t('home.why.2')} />
+            <FeatureCard icon={<Users size={24} />} title={t('home.why.3')} />
+            <FeatureCard icon={<Euro size={24} />} title={t('home.why.4')} />
+            <FeatureCard icon={<MessageSquare size={24} />} title={t('home.why.5')} />
+            <FeatureCard icon={<Award size={24} />} title={t('home.why.6')} />
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
 export default Home;

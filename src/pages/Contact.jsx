@@ -1,80 +1,77 @@
 import React from 'react';
+import { Mail, MapPin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import useScrollReveal from '../hooks/useScrollReveal';
 
+const PageHeader = ({ title, subtitle }) => (
+  <div className="bg-light-alt-bg py-16 text-center">
+    <h1 className="text-4xl md:text-5xl font-display font-bold text-primary">{title}</h1>
+    {subtitle && <p className="mt-4 text-lg text-body-text max-w-2xl mx-auto">{subtitle}</p>}
+  </div>
+);
+
 const Contact = () => {
-  useScrollReveal('.feature-box, .date-card, .course-card, .format-card, .expertise-item, .info-card');
+  const { t } = useTranslation();
+  useScrollReveal('.contact-card, .form-group');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert('Thank you for your message! We will get back to you soon at the email address you provided.');
+    alert(t('contact.form.success'));
     event.target.reset();
   };
 
   return (
-    <div id="contact" className="page active">
-      <section className="container">
-        <h2>Contact European CLIL Academy</h2>
-        <p className="section-subtitle">Get in touch to discuss courses, register, or arrange custom training</p>
+    <div>
+      <PageHeader 
+        title={t('contact.header.title')}
+        subtitle={t('contact.header.subtitle')}
+      />
 
-        <div className="contact-container">
-          <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2.5rem' }}>
-            <div className="contact-email">
-              <h3 style={{ fontFamily: 'Bricolage Grotesque, sans-serif', fontWeight: 600, marginBottom: '1rem', color: 'var(--teal)' }}>Email Us</h3>
-              <p>Contact us directly for course information and registration</p>
-              <a href="mailto:info@eclilacademy.eu" style={{ color: 'var(--teal)', fontWeight: 600 }}>info@eclilacademy.eu</a>
+      <section className="py-16 md:py-24">
+        <div className="max-w-screen-xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div className="contact-card bg-white p-8 rounded-lg shadow-md border">
+                <Mail className="w-10 h-10 text-accent mb-4" />
+                <h3 className="font-display text-2xl font-semibold mb-2">{t('contact.email.title')}</h3>
+                <p className="text-body-text mb-4">{t('contact.email.desc')}</p>
+                <a href="mailto:info@eclilacademy.eu" className="font-semibold text-primary hover:underline">
+                  info@eclilacademy.eu
+                </a>
+              </div>
+              <div className="contact-card bg-white p-8 rounded-lg shadow-md border">
+                <MapPin className="w-10 h-10 text-accent mb-4" />
+                <h3 className="font-display text-2xl font-semibold mb-2">{t('contact.loc.title')}</h3>
+                <p className="text-body-text">
+                  {t('contact.loc.p1')}<br />
+                  {t('contact.loc.p2')}<br />
+                  {t('contact.loc.p3')}
+                </p>
+              </div>
             </div>
 
-            <div className="contact-form">
-              <h3 style={{ fontFamily: 'Bricolage Grotesque, sans-serif', fontWeight: 600, marginBottom: '1.5rem', color: 'var(--teal)' }}>Quick Message</h3>
-              <form onSubmit={handleSubmit}>
-                <div className="form-group" style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: 'var(--slate)' }}>Your Name</label>
-                  <input 
-                    type="text" 
-                    required 
-                    style={{ width: '100%', padding: '0.8rem', borderRadius: 'var(--radius)', border: '1px solid var(--sand)', background: 'white' }} 
-                  />
+            {/* Contact Form */}
+            <div className="bg-white p-8 rounded-lg shadow-lg border">
+              <h3 className="font-display text-2xl font-semibold mb-6">{t('contact.form.title')}</h3>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="form-group">
+                  <label htmlFor="name" className="block mb-2 text-sm font-medium text-dark-text">{t('contact.form.name')}</label>
+                  <input type="text" id="name" required className="bg-gray-50 border border-border-gray text-dark-text text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" />
                 </div>
-                <div className="form-group" style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: 'var(--slate)' }}>Email Address</label>
-                  <input 
-                    type="email" 
-                    required 
-                    style={{ width: '100%', padding: '0.8rem', borderRadius: 'var(--radius)', border: '1px solid var(--sand)', background: 'white' }} 
-                  />
+                <div className="form-group">
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium text-dark-text">{t('contact.form.email')}</label>
+                  <input type="email" id="email" required className="bg-gray-50 border border-border-gray text-dark-text text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" />
                 </div>
-                <div className="form-group" style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: 'var(--slate)' }}>Message</label>
-                  <textarea 
-                    required 
-                    style={{ width: '100%', padding: '0.8rem', borderRadius: 'var(--radius)', border: '1px solid var(--sand)', background: 'white', minHeight: '120px' }} 
-                  ></textarea>
+                <div className="form-group">
+                  <label htmlFor="message" className="block mb-2 text-sm font-medium text-dark-text">{t('contact.form.message')}</label>
+                  <textarea id="message" rows="4" required className="bg-gray-50 border border-border-gray text-dark-text text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"></textarea>
                 </div>
-                <button type="submit" className="btn btn-primary" style={{ width: '100%', textAlign: 'center' }}>Send Message</button>
+                <button type="submit" className="w-full px-8 py-3 text-center font-semibold rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-primary/50">
+                  {t('contact.form.btn')}
+                </button>
               </form>
             </div>
-          </div>
-
-          <div style={{ background: 'var(--cream)', padding: '2rem', borderRadius: 'var(--radius-lg)', textAlign: 'center', marginTop: '2.5rem', border: '1px solid var(--sand)' }}>
-            <h3 style={{ fontFamily: 'Bricolage Grotesque, sans-serif', fontWeight: 700, color: 'var(--navy)', marginBottom: '1rem' }}>Our Location</h3>
-            <p style={{ color: 'var(--slate)' }}>European CLIL Academy<br/>Chartres, France<br/>(Near Paris, Île-de-France)</p>
-            <p style={{ color: 'var(--muted)', marginTop: '0.8rem', fontSize: '0.9rem' }}>Serving teachers across Europe with Erasmus+ compatible training</p>
-            <div style={{ marginTop: '1.5rem', borderRadius: 'var(--radius)', overflow: 'hidden', border: '1px solid var(--sand)' }}>
-              <iframe 
-                src="https://maps.google.com/maps?q=48.4469,1.4833(Chartres,+France)&t=&z=8&ie=UTF8&iwloc=&output=embed" 
-                width="100%" 
-                height="280" 
-                style={{ border: 0, display: 'block' }} 
-                allowFullScreen="" 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Google Maps Location"
-              >
-              </iframe>
-            </div>
-            <a href="https://www.google.com/maps/place/Chartres,+France" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', marginTop: '1.2rem', fontFamily: 'Bricolage Grotesque, sans-serif', fontSize: '0.9rem', fontWeight: 600, color: 'var(--teal)', textDecoration: 'none', padding: '0.5rem 1.2rem', border: '1.5px solid var(--teal)', borderRadius: 'var(--radius-pill)', transition: 'all 0.25s' }}>
-              📍 View on Google Maps
-            </a>
           </div>
         </div>
       </section>
