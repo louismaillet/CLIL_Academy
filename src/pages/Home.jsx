@@ -92,7 +92,6 @@ const Home = () => {
           </div>
           <div className="relative">
             <img src={europeMap} alt="Map of Europe" className="rounded-lg" />
-            <img src="/images/pin.svg" alt="Pin on Chartres" className="absolute" style={{ width: '48px', height: '48px', top: '55%', left: '48%', transform: 'translate(-50%, -50%)' }} />
           </div>
         </div>
       </section>
