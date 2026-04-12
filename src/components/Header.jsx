@@ -42,7 +42,11 @@ const Header = () => {
     <nav className={`bg-light-bg/90 backdrop-blur-lg sticky top-0 z-50 border-b border-border-gray/60 transition-shadow duration-300 ${isScrolled ? 'shadow-md' : ''}`}>
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" className="flex items-center">
-          <img src="/images/Logo.png" alt="European CLIL Academy Logo" style={{ height: '120px', margin: '-15px 0', position: 'relative', zIndex: 10 }} />
+          <img 
+            src="/images/Logo.png" 
+            alt="European CLIL Academy Logo" 
+            className="h-16 md:h-20 lg:h-24 w-auto"
+          />
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center">
           <div className="relative">
