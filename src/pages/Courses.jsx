@@ -20,7 +20,7 @@ const CourseDetailItem = ({ icon, label, value }) => (
 
 const Courses = () => {
   const { t } = useTranslation();
-  useScrollReveal('.course-card, .date-card, .format-card');
+  useScrollReveal('.course-card, .date-card, .format-card, .reveal-on-scroll');
 
   return (
     <div>
@@ -29,7 +29,7 @@ const Courses = () => {
         subtitle={t('courses.header.subtitle')}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 reveal-on-scroll">
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="course-card bg-white p-8 rounded-lg shadow-lg border border-gray-200">
             <h3 className="text-2xl md:text-3xl font-display font-bold text-primary mb-4">
@@ -100,7 +100,7 @@ const Courses = () => {
         </div>
       </section>
 
-      <section className="bg-light-alt-bg py-16 md:py-24">
+      <section className="bg-light-alt-bg py-16 md:py-24 reveal-on-scroll">
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-display font-bold">{t('courses.upcoming.title')}</h2>
@@ -132,7 +132,7 @@ const Courses = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 reveal-on-scroll">
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-display font-bold">{t('courses.format.title')}</h2>

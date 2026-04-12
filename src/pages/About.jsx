@@ -19,7 +19,7 @@ const InfoCard = ({ title, children }) => (
 
 const About = () => {
   const { t } = useTranslation();
-  useScrollReveal('.info-card, .expertise-item');
+  useScrollReveal('.info-card, .expertise-item, .reveal-on-scroll');
 
   return (
     <div>
@@ -28,7 +28,7 @@ const About = () => {
         subtitle={t('about.header.subtitle')}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 reveal-on-scroll">
         <div className="max-w-screen-xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-start">
           <InfoCard title={t('about.mission.title')}>
             <p className="text-body-text mb-4">
@@ -58,7 +58,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="bg-light-alt-bg py-16 md:py-24">
+      <section className="bg-light-alt-bg py-16 md:py-24 reveal-on-scroll">
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-display font-bold">{t('about.trainer.title')}</h2>

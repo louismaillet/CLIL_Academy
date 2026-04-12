@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Globe } from 'lucide-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +28,14 @@ const Header = () => {
     closeMenu();
   }, [location]);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+    });
+  }, []);
+
   const navLinkClasses = (path) => {
     const baseClasses = "block py-2 pr-4 pl-3 text-body-text rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary md:p-0";
     const activeClasses = "text-primary";
@@ -41,13 +51,17 @@ const Header = () => {
   return (
     <nav className={`bg-light-bg/90 backdrop-blur-lg sticky top-0 z-50 border-b border-border-gray/60 transition-shadow duration-300 ${isScrolled ? 'shadow-md' : ''}`}>
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link to="/" className="flex items-center">
-          <img 
-            src="/images/Logo.png" 
-            alt="European CLIL Academy Logo" 
-            className="h-16 md:h-20 lg:h-24 w-auto"
-          />
-        </Link>
+        <div >
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/images/Logo.png" 
+              alt="European CLIL Academy Logo" 
+              className="h-16 md:h-20 lg:h-24 w-auto"
+              aria-hidden="true"
+              loading="lazy"
+            />
+          </Link>
+        </div>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center">
           <div className="relative">
             <button 
@@ -66,14 +80,10 @@ const Header = () => {
             )}
           </div>
           <button 
-            onClick={toggleMenu}
-            type="button" 
-            className="inline-flex items-center p-2 ml-3 text-sm text-body-text rounded-lg md:hidden hover:bg-light-alt-bg focus:outline-none focus:ring-2 focus:ring-gray-200" 
-            aria-controls="navbar-default" 
-            aria-expanded={isOpen}
+            onClick={toggleMenu} 
+            className="p-2 rounded-md hover:bg-gray-200 transition-all duration-300 md:hidden"
           >
-            <span className="sr-only">Open main menu</span>
-            <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
+            Menu
           </button>
         </div>
         <div className={`${isOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto md:order-1`} id="navbar-default">

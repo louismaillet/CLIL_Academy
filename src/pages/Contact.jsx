@@ -12,7 +12,7 @@ const PageHeader = ({ title, subtitle }) => (
 
 const Contact = () => {
   const { t } = useTranslation();
-  useScrollReveal('.contact-card, .form-group');
+  useScrollReveal('.contact-card, .form-group, .reveal-on-scroll');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,7 +27,7 @@ const Contact = () => {
         subtitle={t('contact.header.subtitle')}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 reveal-on-scroll">
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Info */}

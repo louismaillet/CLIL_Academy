@@ -1,32 +1,47 @@
 import { useEffect } from 'react';
 
-const useScrollReveal = (selector) => {
+const useScrollReveal = (selector, options = {}) => {
   useEffect(() => {
+    const {
+      threshold = 0.12,
+      rootMargin = '0px 0px -10% 0px',
+      stagger = 70,
+      once = true,
+    } = options;
+
     const revealElements = document.querySelectorAll(selector);
 
-    revealElements.forEach(el => el.classList.add('reveal'));
+    if (!revealElements.length) {
+      return undefined;
+    }
+
+    revealElements.forEach((el, index) => {
+      el.classList.add('reveal');
+      el.style.setProperty('--reveal-delay', `${index * stagger}ms`);
+    });
 
     const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Stagger the animation
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, index * 80);
-          revealObserver.unobserve(entry.target);
+          entry.target.classList.add('visible');
+          if (once) {
+            revealObserver.unobserve(entry.target);
+          }
+        } else if (!once) {
+          entry.target.classList.remove('visible');
         }
       });
     }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      threshold,
+      rootMargin,
     });
 
-    revealElements.forEach(el => revealObserver.observe(el));
+    revealElements.forEach((el) => revealObserver.observe(el));
 
     return () => {
-      revealElements.forEach(el => revealObserver.unobserve(el));
+      revealElements.forEach((el) => revealObserver.unobserve(el));
     };
-  }, [selector]);
+  }, [selector, options]);
 };
 
 export default useScrollReveal;

@@ -35,12 +35,12 @@ const FeatureCard = ({ icon, title, children }) => {
 
 const Home = () => {
   const { t } = useTranslation();
-  useScrollReveal('.feature-box, .course-card, .info-card');
+  useScrollReveal('.feature-box, .reveal-on-scroll');
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-light-alt-bg py-20 md:py-32">
+      <section className="bg-light-alt-bg py-20 md:py-32 reveal-on-scroll">
         <div className="max-w-screen-xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-display font-bold text-primary mb-4">
             {t('home.hero.title')}
@@ -59,7 +59,7 @@ const Home = () => {
       </section>
 
       {/* Welcome Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 reveal-on-scroll">
         <div className="max-w-screen-xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">{t('home.welcome.title')}</h2>
           <p className="text-body-text max-w-3xl mx-auto mb-12">
@@ -80,7 +80,7 @@ const Home = () => {
       </section>
 
       {/* Erasmus+ Section */}
-      <section className="bg-light-alt-bg py-16 md:py-24">
+      <section className="bg-light-alt-bg py-16 md:py-24 reveal-on-scroll">
         <div className="max-w-screen-xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <span className="font-bold text-secondary uppercase">{t('home.erasmus.tag')}</span>
@@ -97,7 +97,7 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 reveal-on-scroll">
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">{t('home.why.title')}</h2>
