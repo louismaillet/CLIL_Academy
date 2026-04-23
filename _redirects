@@ -1,0 +1,4 @@
+# Redirect old SPA paths to static HTML files
+/about     /about.html     200
+/courses   /courses.html   200
+/contact   /contact.html   200
