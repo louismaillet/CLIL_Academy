@@ -48,9 +48,9 @@ const Home = () => {
           <p className="text-xl md:text-2xl text-secondary font-semibold max-w-3xl mx-auto mb-2">
             {t('home.hero.subtitle')}
           </p>
-          <p className="text-lg md:text-xl text-primary font-bold max-w-3xl mx-auto mb-4 flex items-center justify-center gap-2">
+          <a href="https://www.google.com/maps/place/Chartres,+France" target="_blank" rel="noopener noreferrer" className="text-lg md:text-xl text-primary font-bold max-w-3xl mx-auto mb-4 flex items-center justify-center gap-2 hover:underline cursor-pointer">
             <MapPin size={24} /> {t('home.hero.location')}
-          </p>
+          </a>
           <p className="text-lg md:text-xl text-body-text max-w-3xl mx-auto mb-8">
             {t('home.hero.description')}
           </p>
