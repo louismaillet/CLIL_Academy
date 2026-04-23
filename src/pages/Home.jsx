@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { GraduationCap, BookOpen, Globe, Target, Hand, Users, Euro, MessageSquare, Award } from 'lucide-react';
+import { GraduationCap, BookOpen, Globe, Target, Hand, Users, Euro, MessageSquare, Award, MapPin } from 'lucide-react';
 import useScrollReveal from '../hooks/useScrollReveal';
 import europeMap from '/images/Carte vectorielle de l\'Europe en bleu.png';
 
@@ -45,8 +45,11 @@ const Home = () => {
           <h1 className="text-4xl md:text-6xl font-display font-bold text-primary mb-4">
             {t('home.hero.title')}
           </h1>
-          <p className="text-xl md:text-2xl text-secondary font-semibold max-w-3xl mx-auto mb-4">
+          <p className="text-xl md:text-2xl text-secondary font-semibold max-w-3xl mx-auto mb-2">
             {t('home.hero.subtitle')}
+          </p>
+          <p className="text-lg md:text-xl text-primary font-bold max-w-3xl mx-auto mb-4 flex items-center justify-center gap-2">
+            <MapPin size={24} /> {t('home.hero.location')}
           </p>
           <p className="text-lg md:text-xl text-body-text max-w-3xl mx-auto mb-8">
             {t('home.hero.description')}

@@ -65,6 +65,11 @@ const Footer = () => {
             </a>
           </div>
         </div>
+        <div className="text-center mt-4">
+          <p className="text-sm text-gray-400">
+            Site développé par <a href="https://louismaillet.fr" className="text-blue-400 hover:underline">louismaillet.fr</a>
+          </p>
+        </div>
       </div>
     </footer>
   );
