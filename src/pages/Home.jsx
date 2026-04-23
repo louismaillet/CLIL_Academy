@@ -40,7 +40,7 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-light-alt-bg py-20 md:py-32 reveal-on-scroll">
+      <section className="bg-light-alt-bg pt-10 pb-20 md:pt-16 md:pb-32 reveal-on-scroll">
         <div className="max-w-screen-xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-display font-bold text-primary mb-4">
             {t('home.hero.title')}
