@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => observer.observe(el));
   }
 
-  // --- Contact form ---
+// --- Contact form ---
   const form = document.getElementById('contact-form');
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -68,3 +68,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
