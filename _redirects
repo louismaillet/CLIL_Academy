@@ -1,4 +1,5 @@
-# Redirect old SPA paths to static HTML files
+http://europeanclilacademy.com/* https://www.europeanclilacademy.com/:splat  301!
+
 /about     /about.html     200
 /courses   /courses.html   200
 /contact   /contact.html   200
