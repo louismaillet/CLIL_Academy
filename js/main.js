@@ -64,8 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (form) {
     form.addEventListener('submit', (e) => {
       alert(translations['contact.form.success'] || 'Thank you for your message! We will get back to you soon.');
-      form.reset();
-    });
+        });
   }
 });
 
