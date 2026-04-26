@@ -13,7 +13,6 @@
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
   <nav class="header">
     <div class="container">
       <div class="header-logo">
@@ -42,17 +41,14 @@
     </div>
   </nav>
 
-  <!-- ===== PAGE HEADER ===== -->
   <div class="page-header">
     <h1 data-i18n="contact.header.title">Contact Us</h1>
     <p data-i18n="contact.header.subtitle">Get in touch to discuss courses, register, or arrange custom training for your school.</p>
   </div>
 
-  <!-- ===== CONTACT CONTENT ===== -->
   <section class="section reveal">
     <div class="container">
       <div class="contact-grid">
-        <!-- Contact Info -->
         <div class="contact-info">
           <div class="contact-card">
             <svg class="icon icon-lg" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -71,30 +67,30 @@
           </div>
         </div>
 
-        <!-- Contact Form -->
         <div class="form-card">
           <h3 data-i18n="contact.form.title">Send a Quick Message</h3>
-          <form id="contact-form">
+          
+          <form id="contact-form" name="contact-academy" method="POST" data-netlify="true">
             <div class="form-group">
               <label for="name" data-i18n="contact.form.name">Your Name</label>
-              <input type="text" id="name" required>
+              <input type="text" id="name" name="name" required>
             </div>
             <div class="form-group">
               <label for="email" data-i18n="contact.form.email">Email Address</label>
-              <input type="email" id="email" required>
+              <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
               <label for="message" data-i18n="contact.form.message">Message</label>
-              <textarea id="message" rows="4" required></textarea>
+              <textarea id="message" name="message" rows="4" required></textarea>
             </div>
             <button type="submit" class="form-submit" data-i18n="contact.form.btn">Send Message</button>
           </form>
+          
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
